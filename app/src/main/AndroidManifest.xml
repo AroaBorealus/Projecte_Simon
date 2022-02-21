@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Projecte_Simon">
-        <activity android:name=".MainActivity">
+
+        <service android:name=".bgMusicService" android:label="@string/app_name" />
+
+        <activity android:name=".Simon">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
