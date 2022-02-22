@@ -1,7 +1,9 @@
 package edu.fje.dam2.projecte_simon;
 
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +23,8 @@ public class Simon extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intentE = getIntent();
 
         intent = new Intent(this, bgMusicService.class);
         intent.putExtra("operacio", "inici");
@@ -56,5 +60,7 @@ public class Simon extends AppCompatActivity {
             }
         });
     }
+
+
 
 }

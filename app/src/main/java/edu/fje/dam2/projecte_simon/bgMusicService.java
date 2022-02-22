@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 
 public class bgMusicService extends IntentService {
 
+    private AudioManager am;
     private MediaPlayer mp;
     private String LOG = "uwu";
 
@@ -22,6 +23,21 @@ public class bgMusicService extends IntentService {
     public void onCreate() {
         super.onCreate();
         mp = MediaPlayer.create(this, R.raw.m02_audio1);
+
+        am = (AudioManager) getSystemService(AUDIO_SERVICE);
+        int requestResult = am.requestAudioFocus(
+                mAudioFocusListener, AudioManager.STREAM_MUSIC,
+                AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK);
+        if (requestResult == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+            mp.start();
+
+            Log.d(LOG, "audioFocus listener aconseguit amb èxit");
+
+        } else if (requestResult == AudioManager.AUDIOFOCUS_REQUEST_FAILED) {
+            mp.stop();
+        } else {
+            Log.d(LOG, "error en la petició del listener de focus ");
+        }
     }
 
     @Override
@@ -34,11 +50,20 @@ public class bgMusicService extends IntentService {
         if (intent != null) {
             String operacio = intent.getStringExtra("operacio");
             switch (operacio){
-                case "inici" : mp.start();
+                case "inici" :
+                    mp.start();
+                    mp.setVolume(1.0f, 1.0f);
+                    Log.d(LOG, "AudioFocus: rebut AUDIOFOCUS_GAIN");
                     break;
                 case "pausa" : mp.pause();
                     break;
                 case "salta": mp.seekTo(10000);
+                    break;
+                case "atura":
+                    mp.stop();
+                    Log.d(LOG, "AudioFocus: rebut AUDIOFOCUS_LOSS");
+                    mp.release();
+                    mp = null;
                     break;
                 default:
                     break;
@@ -57,7 +82,6 @@ public class bgMusicService extends IntentService {
     protected void onHandleIntent(@Nullable Intent intent) {
 
     }
-
 
     private AudioManager.OnAudioFocusChangeListener mAudioFocusListener = new AudioManager.OnAudioFocusChangeListener() {
         public void onAudioFocusChange(int focusChange) {
@@ -96,5 +120,6 @@ public class bgMusicService extends IntentService {
             }
         }
     };
+
 
 }
