@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".Simon">
+
 
 
     <LinearLayout
@@ -13,9 +15,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="173dp"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
+            android:layout_height="135dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -25,13 +27,13 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="16dp"
                     android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tvTitol"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="10dp"
                     android:layout_weight="1"
                     android:text="SIMON"
                     android:textAlignment="center"
@@ -43,31 +45,70 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="563dp"
+            android:layout_height="384dp"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <include
+                layout="@layout/m06_canvas_personalitzat_contingut"
+                android:layout_width="wrap_content"
+                android:layout_height="448dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btPatro"
+                android:layout_width="122dp"
+                android:layout_height="75dp"
+                android:onClick="onClickBtPatron"
+                android:text="Patró" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/btEnviar"
+                android:layout_width="122dp"
+                android:layout_height="75dp"
+                android:onClick="onClickBtEnviar"
+                android:text="Enviar" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvBGMusic"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="bottom"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:text="BGM"
+                android:textAlignment="viewEnd"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tvBGMusic"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="BGM"
-                    android:textAlignment="viewEnd"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                app:srcCompat="@android:drawable/ic_dialog_email" />
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/fab"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|right"
-                    app:srcCompat="@android:drawable/ic_dialog_email" />
-            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
