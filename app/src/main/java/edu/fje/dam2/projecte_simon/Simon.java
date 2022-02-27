@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,22 +30,27 @@ public class Simon extends AppCompatActivity {
 
     private boolean isReproduint= true;
     private Intent intent;
-    private int ronda = 1;
+    private String usr = "a";
+    private int ronda = 0;
     private HashMap<Integer,Integer> list = new HashMap<Integer, Integer>();
     private M06_VistaPropia vistaPropia,vistaPropia4,vistaPropia2,vistaPropia3,vistaPropiaError;
+    private TextView pts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent intentE = getIntent();
+        usr = intentE.getStringExtra("usr");
+        Log.i("usr",usr);
 
         intent = new Intent(this, bgMusicService.class);
         intent.putExtra("operacio", "inici");
         startService(intent);
 
-
         setContentView(R.layout.simon);
+
+        pts = (TextView) findViewById(R.id.tlPts);
 
         final FloatingActionButton fab = findViewById(R.id.fab);
         fab.setImageResource(android.R.drawable.ic_media_pause);
@@ -132,9 +140,18 @@ public class Simon extends AppCompatActivity {
                     Log.i("uwu","ELS NÚMEROS NO COINCIDEIXEN");
                     Log.i("uwu","Màquina: "+parts[cnt]);
                     Log.i("uwu","Jugador: "+partsClicks[cnt]);
-                }else Toast.makeText(getApplicationContext(), "CORRECTE", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(), "CORRECTE", Toast.LENGTH_SHORT).show();
+                    pts.setText(String.valueOf(cnt));
+                    ronda = cnt;
+                }
             }
-        }else Toast.makeText(getApplicationContext(), "Patró incorrecte", Toast.LENGTH_SHORT).show();
+        }else {
+            Intent intentFnl = new Intent(this,Final.class);
+            intentFnl.putExtra("usr", usr);
+            intentFnl.putExtra("pts", ronda);
+            startActivity(intentFnl);
+        };
     }
 
     public void fesPatro(){

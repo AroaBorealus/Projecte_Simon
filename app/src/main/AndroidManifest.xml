@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".Simon">
         </activity>
+        <activity android:name=".Final">
+        </activity>
     </application>
 
 </manifest>
