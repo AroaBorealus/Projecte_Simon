@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -34,8 +35,17 @@ class M06_VistaPropia extends View
     private int primerBucle = 0;
 
     private int color;
+
+    private MediaPlayer mp,mp2,mp3,mp4;
+
     public M06_VistaPropia(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        mp = MediaPlayer.create(context,R.raw.sounds_1);
+        mp2 = MediaPlayer.create(context,R.raw.sounds_2);
+        mp3 = MediaPlayer.create(context,R.raw.sounds_3);
+        mp4 = MediaPlayer.create(context,R.raw.sounds_4);
+
 
         TypedArray a = context.getTheme().obtainStyledAttributes(
                 attrs,
@@ -80,6 +90,7 @@ class M06_VistaPropia extends View
             nColor = Color.GREEN;
             val = 1;
             Log.i("colors","COLOR VERD");
+
         }
 
         else if(x > 550 && y < 550){
@@ -116,6 +127,16 @@ class M06_VistaPropia extends View
                 this.color= nColor;
                 this.invalidate();
                 invalidate();
+                if(val == 1){
+                    mp.start();
+                }else if(val == 2){
+                    mp2.start();
+                }else if(val == 3){
+                    mp3.start();
+                }else if(val == 4){
+                    mp4.start();
+                }
+
                 break;
             case MotionEvent.ACTION_UP :
                 this.x = xAct;

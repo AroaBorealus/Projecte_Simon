@@ -3,8 +3,10 @@ package edu.fje.dam2.projecte_simon;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Looper;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,6 +37,9 @@ public class Simon extends AppCompatActivity {
     private HashMap<Integer,Integer> list = new HashMap<Integer, Integer>();
     private M06_VistaPropia vistaPropia,vistaPropia4,vistaPropia2,vistaPropia3,vistaPropiaError;
     private TextView pts;
+    private MediaPlayer mp1,mp2,mp3,mp4;
+
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,11 @@ public class Simon extends AppCompatActivity {
         usr = intentE.getStringExtra("usr");
         Log.i("usr",usr);
 
+        mp1 = MediaPlayer.create(this,R.raw.sounds_1);
+        mp2 = MediaPlayer.create(this,R.raw.sounds_2);
+        mp3 = MediaPlayer.create(this,R.raw.sounds_3);
+        mp4 = MediaPlayer.create(this,R.raw.sounds_4);
+
         intent = new Intent(this, bgMusicService.class);
         intent.putExtra("operacio", "inici");
         startService(intent);
@@ -52,7 +62,7 @@ public class Simon extends AppCompatActivity {
 
         pts = (TextView) findViewById(R.id.tlPts);
 
-        final FloatingActionButton fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.setImageResource(android.R.drawable.ic_media_pause);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,10 +146,15 @@ public class Simon extends AppCompatActivity {
         if(parts.length == partsClicks.length){
             for(int cnt = 0; cnt < parts.length; cnt++){
                 if(!(parts[cnt].equals(partsClicks[cnt]))){
-                    Toast.makeText(getApplicationContext(), "ELS NÚMEROS NO COINCIDEIXEN", Toast.LENGTH_SHORT).show();
-                    Log.i("uwu","ELS NÚMEROS NO COINCIDEIXEN");
-                    Log.i("uwu","Màquina: "+parts[cnt]);
-                    Log.i("uwu","Jugador: "+partsClicks[cnt]);
+                    isReproduint = false;
+                    fab.setImageResource(android.R.drawable.ic_media_play);
+                    intent.putExtra("operacio", "pausa");
+                    startService(intent);
+
+                    Intent intentFnl = new Intent(this,Final.class);
+                    intentFnl.putExtra("usr", usr);
+                    intentFnl.putExtra("pts", ronda);
+                    startActivity(intentFnl);
                 }else{
                     Toast.makeText(getApplicationContext(), "CORRECTE", Toast.LENGTH_SHORT).show();
                     pts.setText(String.valueOf(cnt));
@@ -147,6 +162,11 @@ public class Simon extends AppCompatActivity {
                 }
             }
         }else {
+            isReproduint = false;
+            fab.setImageResource(android.R.drawable.ic_media_play);
+            intent.putExtra("operacio", "pausa");
+            startService(intent);
+
             Intent intentFnl = new Intent(this,Final.class);
             intentFnl.putExtra("usr", usr);
             intentFnl.putExtra("pts", ronda);
@@ -158,27 +178,32 @@ public class Simon extends AppCompatActivity {
         for(final Map.Entry<Integer, Integer> entry : list.entrySet()){
             new android.os.Handler(Looper.getMainLooper()).postDelayed(
                     new Runnable() {
+
                         public void run() {
                             if (entry.getValue() == 1) {
                                 vistaPropia.pintaPatro(1);
+                                mp1.start();
                                 vistaPropia2.resetSimon(2);
                                 vistaPropia3.resetSimon(3);
                                 vistaPropia4.resetSimon(4);
 
                             } else if (entry.getValue() == 2) {
                                 vistaPropia2.pintaPatro(2);
+                                mp2.start();
                                 vistaPropia.resetSimon(1);
                                 vistaPropia3.resetSimon(3);
                                 vistaPropia4.resetSimon(4);
 
                             } else if (entry.getValue() == 3) {
                                 vistaPropia3.pintaPatro(3);
+                                mp3.start();
                                 vistaPropia2.resetSimon(2);
                                 vistaPropia.resetSimon(1);
                                 vistaPropia4.resetSimon(4);
 
                             } else if (entry.getValue() == 4) {
                                 vistaPropia4.pintaPatro(4);
+                                mp4.start();
                                 vistaPropia2.resetSimon(2);
                                 vistaPropia.resetSimon(1);
                                 vistaPropia3.resetSimon(3);
