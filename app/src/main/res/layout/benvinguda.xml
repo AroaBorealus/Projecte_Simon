@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/color"
     android:layout_width="match_parent"
-    android:background="@color/background"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -23,9 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="92dp"
             android:text="SIMON"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:textSize="56dp" />
+            style="@style/titols" />
 
         <Space
             android:layout_width="match_parent"

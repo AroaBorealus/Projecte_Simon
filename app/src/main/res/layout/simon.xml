@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
     tools:context=".Simon">
 
 
@@ -67,7 +66,6 @@
                     android:layout_weight="1"
                     android:text="0"
                     android:textAlignment="center"
-                    android:textColor="@color/white"
                     android:textSize="48dp"
                     android:textStyle="bold" />
 
@@ -99,7 +97,6 @@
                     android:layout_height="wrap_content"
                     android:text="BGM"
                     android:textAlignment="viewEnd"
-                    android:textColor="@color/white"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 

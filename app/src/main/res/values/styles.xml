@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTemaSimon" parent="android:Theme.Light">
-        <item name="android:background">@color/background</item>
+    <style name="titols">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">52dp</item>
+        <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="subtitols">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">36dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="valors">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">24dp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:text">Default</item>
+    </style>
+
 </resources>

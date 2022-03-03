@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
     >
 
     <LinearLayout
@@ -33,10 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="HAS PERDUT"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="48dp"
-                android:textStyle="bold" />
+                style="@style/titols" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -69,10 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Usuari"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="36dp"
-                    android:textStyle="bold" />
+                    style="@style/subtitols" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -99,11 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="24dp"
-                    android:textStyle="italic" />
+                    style="@style/valors" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -137,10 +126,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Puntuació"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="36dp"
-                    android:textStyle="bold" />
+                    style="@style/subtitols" />
+
 
                 <Space
                     android:layout_width="wrap_content"
@@ -167,11 +154,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Punts"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="24dp"
-                    android:textStyle="italic" />
+                    style="@style/valors" />
+
 
                 <Space
                     android:layout_width="wrap_content"
