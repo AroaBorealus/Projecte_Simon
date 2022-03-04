@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "386704032483",
+    "project_id": "projecte-simon-1f074",
+    "storage_bucket": "projecte-simon-1f074.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:386704032483:android:6f58875364da1391797bd6",
+        "android_client_info": {
+          "package_name": "edu.fje.dam2.projecte_simon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "386704032483-8jr46o9kj2mcod8hd2nl6cdkg02ep54k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA48ljwE8b-kYG3Q4TWxXXjgAKuTVw1CzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "386704032483-8jr46o9kj2mcod8hd2nl6cdkg02ep54k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
