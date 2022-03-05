@@ -1,5 +1,7 @@
 package edu.fje.dam2.projecte_simon;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
@@ -11,6 +13,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,10 +32,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
-import edu.fje.dam2.projecte_simon.M06_VistaPropia;
 
 public class Simon extends AppCompatActivity {
 
@@ -45,6 +49,8 @@ public class Simon extends AppCompatActivity {
     private MediaPlayer mp1,mp2,mp3,mp4;
 
     FloatingActionButton fab;
+    private Button btEnviar, btPatro;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +59,8 @@ public class Simon extends AppCompatActivity {
         Intent intentE = getIntent();
         usr = intentE.getStringExtra("usr");
         Log.i("usr",usr);
+
+
 
         mp1 = MediaPlayer.create(this,R.raw.sounds_1);
         mp2 = MediaPlayer.create(this,R.raw.sounds_2);
@@ -66,6 +74,10 @@ public class Simon extends AppCompatActivity {
         setContentView(R.layout.simon);
 
         pts = (TextView) findViewById(R.id.tlPts);
+
+        btPatro = (Button) findViewById(R.id.btPatro);
+        btEnviar = (Button) findViewById(R.id.btEnviar);
+        btEnviar.setAlpha(0f);
 
         fab = findViewById(R.id.fab);
         fab.setImageResource(android.R.drawable.ic_media_pause);
@@ -117,33 +129,20 @@ public class Simon extends AppCompatActivity {
         vistaPropia4.setColor(Color.BLUE);
 
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("puntuacions");
-
-        //myRef.setValue("Hello, World!");
-        myRef.child("Adri").setValue("22");
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d("dbs", "Value is: " + value);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("dbs", "Failed to read value.", error.toException());
-            }
-        });
-
-
     }
-    
+
 
     public void onClickBtPatron(View v){
+        AnimatorSet setPatro = (AnimatorSet)
+                AnimatorInflater.loadAnimator(this,R.animator.fadeout_anim);
+        setPatro.setTarget(btPatro);
+        setPatro.start();
+
+        AnimatorSet setEnvia = (AnimatorSet)
+                AnimatorInflater.loadAnimator(this,R.animator.fadein_anim);
+        setEnvia.setTarget(btEnviar);
+        setEnvia.start();
+
         int nouPat = (int) ((Math.random() * (4 - 1)) + 1);
         int delay = (list.size()+1) * 2000;
 
@@ -154,6 +153,16 @@ public class Simon extends AppCompatActivity {
     }
 
     public void onClickBtEnviar(View v){
+        AnimatorSet setPatro = (AnimatorSet)
+                AnimatorInflater.loadAnimator(this,R.animator.fadein_anim);
+        setPatro.setTarget(btPatro);
+        setPatro.start();
+
+        AnimatorSet setEnvia = (AnimatorSet)
+                AnimatorInflater.loadAnimator(this,R.animator.fadeout_anim);
+        setEnvia.setTarget(btEnviar);
+        setEnvia.start();
+
         String clicks = vistaPropia4.getCadena();
 
         Log.i("PATRO", "Jugador: "+clicks);
@@ -186,7 +195,7 @@ public class Simon extends AppCompatActivity {
                     intentFnl.putExtra("pts", ronda);
                     startActivity(intentFnl);
                 }else{
-                    Toast.makeText(getApplicationContext(), "CORRECTE", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(v, "Patró correcte", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                     pts.setText(String.valueOf(cnt));
                     ronda = cnt;
                 }

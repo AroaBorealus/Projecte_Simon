@@ -22,7 +22,7 @@ public class bgMusicService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        mp = MediaPlayer.create(this, R.raw.m02_audio1);
+        mp = MediaPlayer.create(this, R.raw.background);
 
         am = (AudioManager) getSystemService(AUDIO_SERVICE);
         int requestResult = am.requestAudioFocus(

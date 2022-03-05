@@ -68,5 +68,11 @@
                 android:layout_weight="1" />
         </LinearLayout>
 
+        <ListView
+            android:id="@+id/llistaJugadors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView1"></ListView>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
