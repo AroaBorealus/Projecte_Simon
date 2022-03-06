@@ -1,29 +1,21 @@
 package edu.fje.dam2.projecte_simon;
 
-import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,7 +34,6 @@ public class Benvinguda extends AppCompatActivity {
     private Button btJugar;
     private TextView joc;
     private EditText usr;
-    private String putId, putUsr, putPts;
     List<Jugador> jugadors;
 
     ListView llistaJugadors;
@@ -53,12 +44,6 @@ public class Benvinguda extends AppCompatActivity {
         setContentView(R.layout.benvinguda);
         jugadors = new ArrayList<>();
 
-        /*Intent intent = getIntent();
-        putId = intent.getStringExtra("id");
-        putUsr = intent.getStringExtra("usr");
-        putPts = intent.getStringExtra("pts");*/
-
-        //Log.i("Dades", putId+" - "+putUsr+ " = "+ putPts);
 
         btJugar = (Button) findViewById(R.id.btInici);
         joc = (TextView) findViewById(R.id.textView);
