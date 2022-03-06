@@ -50,16 +50,6 @@ public class Benvinguda extends AppCompatActivity {
         usr = (EditText) findViewById(R.id.tiUser);
         llistaJugadors =  findViewById(R.id.llistaJugadors);
 
-        llistaJugadors.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Jugador jugador = jugadors.get(i);
-                Intent intent = new Intent(getApplicationContext(), Benvinguda.class);
-                intent.putExtra(ID, jugador.getId());
-                intent.putExtra(NOM, jugador.getNom());
-                startActivity(intent);
-            }
-        });
 
         AnimatorSet setText = (AnimatorSet)
                 AnimatorInflater.loadAnimator(this,R.animator.up_anim);
@@ -77,8 +67,6 @@ public class Benvinguda extends AppCompatActivity {
         setUsr.start();
 
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("puntuacions");
-
-
         myRef.addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -91,6 +79,8 @@ public class Benvinguda extends AppCompatActivity {
                     jugadors.add(jugador);
                     Log.i("jugadors",jugador.getNom()+" - "+jugador.getPunts());
                 }
+
+                jugadors.sort((o1, o2) -> o2.getPunts().compareTo(o1.getPunts())); //Ordena la colecció per puntuació
 
                 LlistaJugadors jugadorAdapter = new LlistaJugadors(Benvinguda.this, jugadors);
                 llistaJugadors.setAdapter(jugadorAdapter);

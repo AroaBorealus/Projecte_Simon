@@ -17,3 +17,4 @@
     <item android:drawable="@drawable/simon0"
         android:duration="500" />
 </animation-list>
+

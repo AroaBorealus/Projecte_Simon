@@ -63,13 +63,11 @@ class M06_VistaPropia extends View
 
     @Override
     protected void onDraw(Canvas canvas) {
-        ////
         Log.i("colors", "Entra a onDraw");
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(color);
         Log.i("VISTA2", getColor() + " - " + getX() + "," + getY());
         canvas.drawRect(getX() + x, getY() + y, 550  , 550, paint);
-
     }
 
     @Override
