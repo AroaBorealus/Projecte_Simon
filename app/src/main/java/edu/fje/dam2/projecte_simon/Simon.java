@@ -127,8 +127,26 @@ public class Simon extends AppCompatActivity {
         vistaPropia4.setY(550);
         vistaPropia4.setX(550);
         vistaPropia4.setColor(Color.BLUE);
+    }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_simon, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.retornar:
+                Intent inici = new Intent(this, Benvinguda.class);
+                startActivity(inici);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 
