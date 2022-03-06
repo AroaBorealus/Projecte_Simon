@@ -141,6 +141,11 @@ public class Simon extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.retornar:
+                isReproduint = false;
+                fab.setImageResource(android.R.drawable.ic_media_play);
+                intent.putExtra("operacio", "pausa");
+                startService(intent);
+
                 Intent inici = new Intent(this, Benvinguda.class);
                 startActivity(inici);
                 return true;
